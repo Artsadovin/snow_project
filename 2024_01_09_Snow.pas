@@ -56,16 +56,21 @@ BEGIN
   WRITE(Ch)
 END; 
 
+PROCEDURE InitFlakes(VAR Flakes: TFlakeArray);
+VAR
+  I: BYTE;
+BEGIN
+  FOR I := 0 TO FLAKES_COUNT - 1
+  DO
+    InitFlake(Flakes[I])
+END;
+
 BEGIN
   CURSOROFF;
-  InitFlake(Flake);
-  WHILE TRUE
-  DO
-    BEGIN
-      PrintSimbol('*', Flake);
-      DELAY(1000);
-      //PrintSimbol(' ');
-      DELAY(1000);
-      //ChangeFlakeXY()
-    END
+  InitFlakes(Flakes);
+  //WHILE TRUE
+  //DO
+    //BEGIN
+
+    //END
 END.
