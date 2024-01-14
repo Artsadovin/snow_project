@@ -59,18 +59,24 @@ VAR
   I: BYTE;
 BEGIN
   FOR I := 0 TO FLAKES_COUNT - 1
-  DO
-    BEGIN                           
-      InitFlake(Flakes[I]);
-      WRITELN(I+ 1, ': ', Flakes[I].X);
-      //DELAY(30)
-    END
+  DO                        
+    InitFlake(Flakes[I])
+END;
+
+PROCEDURE PrintFlakes(VAR Flakes: TFlakeArray);
+VAR
+  I: BYTE;
+BEGIN
+  FOR I := 0 TO FLAKES_COUNT - 1
+  DO                        
+    PrintFlake(FLAKE_CHAR, Flakes[I])
 END;
 
 BEGIN
   RANDOMIZE;
   CURSOROFF;
   InitFlakes(Flakes);
+  PrintFlakes(Flakes);
   //WHILE TRUE
   //DO
     //BEGIN
