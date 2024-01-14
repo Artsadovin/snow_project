@@ -14,7 +14,7 @@ TYPE
   TFlake = RECORD
              X, Y: BYTE;
              Color: BYTE;
-             SpeedX, SpeedY: BYTE
+             SpeedX, SpeedY: BYTE   
            END;
   TFlakeArray = ARRAY[0 .. FLAKES_COUNT - 1] OF TFlake;
 VAR
@@ -23,12 +23,12 @@ VAR
 
 PROCEDURE InitFlake(VAR Flake: TFlake);
 BEGIN
-  RANDOMIZE;
+  
   Flake.X := RANDOM(WINDOW_WIDTH) + 1;
   Flake.Y := 1;
   Flake.Color := RANDOM(15) + 1;
   Flake.SpeedX := 0;
-  Flake.SpeedY := 1
+  Flake.SpeedY := 1          
 END;
 
 PROCEDURE PrintFlake(FlakeChar: CHAR; VAR Flake: TFlake);
@@ -51,9 +51,7 @@ END;
 
 PROCEDURE ChangeFlakeCoordinates(VAR Flake: TFlake);
 BEGIN
-  GOTOXY(Flake.X, Flake.Y);
-  TEXTCOLOR(Flake.Color);
-  WRITE(Ch)
+  
 END; 
 
 PROCEDURE InitFlakes(VAR Flakes: TFlakeArray);
@@ -62,10 +60,15 @@ VAR
 BEGIN
   FOR I := 0 TO FLAKES_COUNT - 1
   DO
-    InitFlake(Flakes[I])
+    BEGIN                           
+      InitFlake(Flakes[I]);
+      WRITELN(I+ 1, ': ', Flakes[I].X);
+      //DELAY(30)
+    END
 END;
 
 BEGIN
+  RANDOMIZE;
   CURSOROFF;
   InitFlakes(Flakes);
   //WHILE TRUE
@@ -73,4 +76,5 @@ BEGIN
     //BEGIN
 
     //END
+  READLN
 END.
