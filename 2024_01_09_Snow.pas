@@ -4,9 +4,9 @@ USES
   CRT;
 
 CONST
-  WINDOW_WIDTH = 100;
-  WINDOW_HEIGHT = 50;
-  FLAKES_COUNT = 5;
+  WINDOW_WIDTH = 80;
+  WINDOW_HEIGHT = 25;
+  FLAKES_COUNT = 20;
   FLAKE_CHAR = '*';
   REMOVING_CHAR = ' ';
 
@@ -25,10 +25,10 @@ PROCEDURE InitFlake(VAR Flake: TFlake);
 BEGIN
   
   Flake.X := RANDOM(WINDOW_WIDTH) + 1;
-  Flake.Y := 1;
+  Flake.Y := RANDOM(1) + 1;
   Flake.Color := RANDOM(15) + 1;
   Flake.SpeedX := 0;
-  Flake.SpeedY := 1          
+  Flake.SpeedY := RANDOM(2) + 1;          
 END;
 
 PROCEDURE PrintFlake(FlakeChar: CHAR; VAR Flake: TFlake);
@@ -52,7 +52,10 @@ END;
 PROCEDURE ChangeFlakeCoordinates(VAR Flake: TFlake);
 BEGIN
   Flake.X := Flake.X + Flake.SpeedX;
-  Flake.Y := Flake.Y + Flake.SpeedY
+  Flake.Y := Flake.Y + Flake.SpeedY;
+  IF IsBorderReached(Flake)
+  THEN
+    InitFlake(Flake)
 END; 
 
 PROCEDURE InitFlakes(VAR Flakes: TFlakeArray);
@@ -100,7 +103,7 @@ BEGIN
   DO
     BEGIN
       PrintFlakes(Flakes);
-      DELAY(250);
+      DELAY(50);
       RemoveFlakes(Flakes);
       ChangeFlakesCoordinates(Flakes)
     END;
