@@ -46,7 +46,7 @@ END;
 
 FUNCTION IsBorderReached(VAR Flake: TFlake): BOOLEAN;
 BEGIN
-  IsBorderReached := 
+  IsBorderReached := Flake.Y >= WINDOW_HEIGHT
 END;
 
 PROCEDURE ChangeFlakeCoordinates(VAR Flake: TFlake);
