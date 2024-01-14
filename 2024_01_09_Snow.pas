@@ -23,11 +23,10 @@ VAR
 
 PROCEDURE InitFlake(VAR Flake: TFlake);
 BEGIN
-  
   Flake.X := RANDOM(WINDOW_WIDTH) + 1;
-  Flake.Y := RANDOM(1) + 1;
+  Flake.Y := RANDOM(2) + 1;
   Flake.Color := RANDOM(15) + 1;
-  Flake.SpeedX := 0;
+  Flake.SpeedX := RANDOM(2) + 1;
   Flake.SpeedY := RANDOM(2) + 1;          
 END;
 
