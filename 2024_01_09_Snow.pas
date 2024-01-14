@@ -51,7 +51,8 @@ END;
 
 PROCEDURE ChangeFlakeCoordinates(VAR Flake: TFlake);
 BEGIN
-  
+  Flake.X := Flake.X + Flake.SpeedX;
+  Flake.Y := Flake.Y + Flake.SpeedY
 END; 
 
 PROCEDURE InitFlakes(VAR Flakes: TFlakeArray);
@@ -72,15 +73,36 @@ BEGIN
     PrintFlake(FLAKE_CHAR, Flakes[I])
 END;
 
+PROCEDURE RemoveFlakes(VAR Flakes: TFlakeArray);
+VAR
+  I: BYTE;
+BEGIN
+  FOR I := 0 TO FLAKES_COUNT - 1
+  DO                        
+    RemoveFlake(Flakes[I])
+END;
+
+PROCEDURE ChangeFlakesCoordinates(VAR Flakes: TFlakeArray);
+VAR
+  I: BYTE;
+BEGIN
+  FOR I := 0 TO FLAKES_COUNT - 1
+  DO                        
+    ChangeFlakeCoordinates(Flakes[I])
+END;
+
+
 BEGIN
   RANDOMIZE;
   CURSOROFF;
   InitFlakes(Flakes);
-  PrintFlakes(Flakes);
-  //WHILE TRUE
-  //DO
-    //BEGIN
-
-    //END
+  WHILE TRUE
+  DO
+    BEGIN
+      PrintFlakes(Flakes);
+      DELAY(250);
+      RemoveFlakes(Flakes);
+      ChangeFlakesCoordinates(Flakes)
+    END;
   READLN
 END.
