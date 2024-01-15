@@ -1,4 +1,4 @@
-PROGRAM Snow(INPUT, OUTPUT);
+﻿PROGRAM Snow(INPUT, OUTPUT);
 
 USES
   CRT;
@@ -6,7 +6,7 @@ USES
 CONST
   WINDOW_WIDTH = 80;
   WINDOW_HEIGHT = 25;
-  FLAKES_COUNT = 20;
+  FLAKES_COUNT = 30;
   FLAKE_CHAR = '*';
   REMOVING_CHAR = ' ';
 
@@ -18,7 +18,6 @@ TYPE
            END;
   TFlakeArray = ARRAY[0 .. FLAKES_COUNT - 1] OF TFlake;
 VAR
-  //Flake: TFlake;
   Flakes: TFlakeArray;
 
 PROCEDURE InitFlake(VAR Flake: TFlake);
